@@ -385,7 +385,7 @@ func (p *Pool) expireLocked(l *Lease) {
 
 // reclaimExpiredLocked sweeps active leases past their deadline.
 func (p *Pool) reclaimExpiredLocked() []uint64 {
-	var reclaimed []uint64
+	reclaimed := make([]uint64, 0)
 	now := time.Now()
 	for _, l := range p.leases {
 		if l.state != stateActive {
